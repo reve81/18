@@ -17,14 +17,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+/**
+ * è‡ªå®šä¹‰æ—¥å†é€‰æ‹©é¢æ¿ç±»ï¼Œå¯ä¸ TextFieldã€JLabel ç­‰ç»„ä»¶ç»‘å®š
+ * å®ç°é€‰æ‹©æ—¥æœŸåè‡ªåŠ¨å¡«å…¥æŒ‡å®šç»„ä»¶ï¼Œå¹¶æ”¯æŒå¹´æœˆåˆ‡æ¢ç­‰æ“ä½œ
+ */
 public class CalendarPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private JLabel btn_lastYear = null;
-	private JLabel btn_nextYear = null;
-	private JLabel btn_lastMonth = null; 
-	private JLabel btn_nextMonth = null; 
-	private JLabel lb_datetime = null; 
-	private JPanel panel_maincalenderpanel = null; 
+	private JLabel btn_lastYear = null;// ä¸Šä¸€å¹´æŒ‰é’®
+	private JLabel btn_nextYear = null;// ä¸‹ä¸€å¹´æŒ‰é’®
+	private JLabel btn_lastMonth = null; // ä¸Šä¸€æœˆæŒ‰é’®
+	private JLabel btn_nextMonth = null; // ä¸‹ä¸€æœˆæŒ‰é’®
+	private JLabel lb_datetime = null; // å½“å‰æ˜¾ç¤ºæ—¥æœŸæ ‡ç­¾
+	private JPanel panel_maincalenderpanel = null; // æ—¥æœŸç½‘æ ¼é¢æ¿
 	private JLabel lblNewLabel = null;  
 	private JLabel label = null; 
 	private JLabel label_1 = null;
@@ -35,16 +39,16 @@ public class CalendarPanel extends JPanel {
 	private JLabel btn_close = null; 
 	private JButton btn_today = null; 
 	private JButton btn_cancel = null;  
-	private Object component = null;       //ÈÕÀú¿Ø¼şµÄÔØÌå×é¼ş£¬ÈçTextField
-	private String returnDateStr = null;   //±£´æÑ¡ÖĞµÄÈÕÆÚ  
+	private Object component = null;       //æ—¥å†æ§ä»¶çš„è½½ä½“ç»„ä»¶ï¼Œå¦‚TextField
+	private String returnDateStr = null;   //ä¿å­˜é€‰ä¸­çš„æ—¥æœŸ  
 	private CallBack callBack = null;
-	private String patern = "yyyy-MM-dd";     //ÈÕÆÚ¸ñÊ½
+	private String patern = "yyyy-MM-dd";     //æ—¥æœŸæ ¼å¼
 	private SimpleDateFormat sdf = null;
-	private String nowDatetime = null ;    //µ±Ç°ÏµÍ³ÈÕÆÚ×Ö·û´®
+	private String nowDatetime = null ;    //å½“å‰ç³»ç»Ÿæ—¥æœŸå­—ç¬¦ä¸²
 	/**
-	 * ´ø²ÎÊıµÄ¹¹Ôìº¯Êı£¬¸Ã¹¹Ôìº¯Êı½«¹¹ÔìÒ»¸öÉèÖÃÁËÈÕÀú¿Ø¼şµÄÔØÌå×é¼şµÄCalenderPanel¶ÔÏóÊµÀı
-	 * @param component  ÈÕÀú¿Ø¼şµÄÔØÌå×é¼ş£¬¿ÉÒÔÊÇTextField¡¢JTextField¡¢Label¡¢JLabel
-	 * @param patern  ÈÕÆÚ¸ñÊ½ £¬Ä¬ÈÏÎªyyyy-MM-dd
+	 * å¸¦å‚æ•°çš„æ„é€ å‡½æ•°ï¼Œè¯¥æ„é€ å‡½æ•°å°†æ„é€ ä¸€ä¸ªè®¾ç½®äº†æ—¥å†æ§ä»¶çš„è½½ä½“ç»„ä»¶çš„CalenderPanelå¯¹è±¡å®ä¾‹
+	 * @param component  æ—¥å†æ§ä»¶çš„è½½ä½“ç»„ä»¶ï¼Œå¯ä»¥æ˜¯TextFieldã€JTextFieldã€Labelã€JLabel
+	 * @param patern  æ—¥æœŸæ ¼å¼ ï¼Œé»˜è®¤ä¸ºyyyy-MM-dd
 	 */
 	public CalendarPanel(Object component,String patern) {
 		this(patern);
@@ -52,50 +56,50 @@ public class CalendarPanel extends JPanel {
 	}
 	/**
 
-	 * ´ø²ÎÊıµÄ¹¹Ôìº¯Êı£¬¸Ã¹¹Ôìº¯Êı½«¹¹ÔìÒ»¸öCalenderPanel¶ÔÏóÊµÀı£¬¸Ã¶ÔÏóÊ±ºòÃ»ÓĞÉèÖÃÈÕÀú¿Ø¼şµÄÔØÌå×é¼ş
+	 * å¸¦å‚æ•°çš„æ„é€ å‡½æ•°ï¼Œè¯¥æ„é€ å‡½æ•°å°†æ„é€ ä¸€ä¸ªCalenderPanelå¯¹è±¡å®ä¾‹ï¼Œè¯¥å¯¹è±¡æ—¶å€™æ²¡æœ‰è®¾ç½®æ—¥å†æ§ä»¶çš„è½½ä½“ç»„ä»¶
 
-	 * * @param patern  ÈÕÆÚ¸ñÊ½£¬Ä¬ÈÏÎªyyyy-MM-dd
+	 * * @param patern  æ—¥æœŸæ ¼å¼ï¼Œé»˜è®¤ä¸ºyyyy-MM-dd
 
 	 */
 
 	public CalendarPanel(String patern) {
 		super();
-		//³õÊ¼»¯ÈÕÆÚ¸ñÊ½
+		//åˆå§‹åŒ–æ—¥æœŸæ ¼å¼
 		this.patern = patern;
 		sdf = new SimpleDateFormat(patern);
 		nowDatetime = sdf.format(new Date());
 		setLayout(null);
-		//ÉèÖÃÈÕÀú¿Ø¼şµÄÕûÌåÖ÷Ãæ°å±ß¿òÎª»ÒÉ«
+		//è®¾ç½®æ—¥å†æ§ä»¶çš„æ•´ä½“ä¸»é¢æ¿è¾¹æ¡†ä¸ºç°è‰²
 		this.setBorder(BorderFactory.createLineBorder(Color.gray));
-		//³õÊ¼»¯ÈÕÀú¿Ø¼şÉÏµÄ¸÷¸ö×é¼ş
+		//åˆå§‹åŒ–æ—¥å†æ§ä»¶ä¸Šçš„å„ä¸ªç»„ä»¶
 		init();
-		//´´½¨ÈÕÀú¿Ø¼şµÄÈÕÆÚ²¿·ÖÃæ°å
+		//åˆ›å»ºæ—¥å†æ§ä»¶çš„æ—¥æœŸéƒ¨åˆ†é¢æ¿
 		createCalendarPanel(nowDatetime);
 	}
 	/**
 
-	 * ÎŞ²ÎÊıµÄ¹¹Ôìº¯Êı£¬¸Ã¹¹Ôìº¯Êı½«¹¹ÔìÒ»¸öCalenderPanel¶ÔÏóÊµÀı£¬¸Ã¶ÔÏóÊ±ºòÃ»ÓĞÉèÖÃÈÕÀú¿Ø¼şµÄÔØÌå×é¼ş
+	 * æ— å‚æ•°çš„æ„é€ å‡½æ•°ï¼Œè¯¥æ„é€ å‡½æ•°å°†æ„é€ ä¸€ä¸ªCalenderPanelå¯¹è±¡å®ä¾‹ï¼Œè¯¥å¯¹è±¡æ—¶å€™æ²¡æœ‰è®¾ç½®æ—¥å†æ§ä»¶çš„è½½ä½“ç»„ä»¶
 
 	 */
 
 	public CalendarPanel() {
 		super();
-		//³õÊ¼»¯ÈÕÆÚ¸ñÊ½»¯
+		//åˆå§‹åŒ–æ—¥æœŸæ ¼å¼åŒ–
 		sdf = new SimpleDateFormat(patern);
 		nowDatetime = sdf.format(new Date());
 		setLayout(null);
-		//ÉèÖÃÈÕÀú¿Ø¼şµÄÕûÌåÖ÷Ãæ°å±ß¿òÎª»ÒÉ«
+		//è®¾ç½®æ—¥å†æ§ä»¶çš„æ•´ä½“ä¸»é¢æ¿è¾¹æ¡†ä¸ºç°è‰²
 		this.setBorder(BorderFactory.createLineBorder(Color.gray));
-		//³õÊ¼»¯ÈÕÀú¿Ø¼şÉÏµÄ¸÷¸ö×é¼ş
+		//åˆå§‹åŒ–æ—¥å†æ§ä»¶ä¸Šçš„å„ä¸ªç»„ä»¶
 		init();
-		//´´½¨ÈÕÀú¿Ø¼şµÄÈÕÆÚ²¿·ÖÃæ°å
+		//åˆ›å»ºæ—¥å†æ§ä»¶çš„æ—¥æœŸéƒ¨åˆ†é¢æ¿
 		createCalendarPanel(nowDatetime);
 	}
 	/**
 
-	 * »ñÈ¡ÈÕÀú¿Ø¼şµÄÔØÌå×é¼ş
+	 * è·å–æ—¥å†æ§ä»¶çš„è½½ä½“ç»„ä»¶
 
-	 * @return  ·µ»Ø¸ÃÈÕÀú¿Ø¼şÖĞµÄÔØÌå×é¼ş£¬Èç¹ûÃ»ÓĞÉèÖÃ£¬Ôò·µ»Ønull;
+	 * @return  è¿”å›è¯¥æ—¥å†æ§ä»¶ä¸­çš„è½½ä½“ç»„ä»¶ï¼Œå¦‚æœæ²¡æœ‰è®¾ç½®ï¼Œåˆ™è¿”å›null;
 
 	 */
 	public Object getComponent() {
@@ -103,7 +107,7 @@ public class CalendarPanel extends JPanel {
 	}
 	/**
 
-	 * ÉèÖÃÈÕÀú¿Ø¼şµÄÔØÌå×é¼ş
+	 * è®¾ç½®æ—¥å†æ§ä»¶çš„è½½ä½“ç»„ä»¶
 
 	 * @param component 
 
@@ -113,7 +117,7 @@ public class CalendarPanel extends JPanel {
 	}
 	/**
 
-	 * »ñÈ¡Ñ¡ÔñÈÕÆÚÊ±ºòµÄÈÕÆÚ×Ö·û´®
+	 * è·å–é€‰æ‹©æ—¥æœŸæ—¶å€™çš„æ—¥æœŸå­—ç¬¦ä¸²
 
 	 * @return
 
@@ -123,7 +127,7 @@ public class CalendarPanel extends JPanel {
 	}
 	/**
 
-	 * »ñÈ¡ÈÕÀú¿Ø¼şµÄ»Øµ÷½Ó¿Ú¶ÔÏó
+	 * è·å–æ—¥å†æ§ä»¶çš„å›è°ƒæ¥å£å¯¹è±¡
 
 	 * @return
 
@@ -133,7 +137,7 @@ public class CalendarPanel extends JPanel {
 	}
 	/**
 
-	 * ÉèÖÃÈÕÀú¿Ø¼şµÄ»Øµ÷½Ó¿Ú¶ÔÏó
+	 * è®¾ç½®æ—¥å†æ§ä»¶çš„å›è°ƒæ¥å£å¯¹è±¡
 
 	 * @param callBack
 
@@ -143,19 +147,19 @@ public class CalendarPanel extends JPanel {
 	}
 /**
 
-	 * ´´½¨ÏÂÀ­Ñ¡ÔñÈÕÀú¿Ø¼şµÄÖ÷ÌåÃæ°å(¼´ÏÔÊ¾ÈÕÆÚ²¿·ÖµÄÃæ°å)
+	 * åˆ›å»ºä¸‹æ‹‰é€‰æ‹©æ—¥å†æ§ä»¶çš„ä¸»ä½“é¢æ¿(å³æ˜¾ç¤ºæ—¥æœŸéƒ¨åˆ†çš„é¢æ¿)
 
-	 * @param date   ĞèÒªÏÔÊ¾µÄÈÕÆÚ
+	 * @param date   éœ€è¦æ˜¾ç¤ºçš„æ—¥æœŸ
 
 	 */
 	private void createCalendarPanel(String date){
-		//Ã¿´ÎË¢ĞÂÈÕÆÚÏÔÊ¾£¬ĞèÒªÖØĞÂ´´½¨ÈÕÆÚ²¿·ÖµÄÃæ°å
-		//Èç¹ûÈÕÆÚ²¿·ÖµÄÃæ°å²»Îªnull,¿ÉÒÔÏÈ½«Æäremove£¬È»ºóÔÙ´´½¨
+		//æ¯æ¬¡åˆ·æ–°æ—¥æœŸæ˜¾ç¤ºï¼Œéœ€è¦é‡æ–°åˆ›å»ºæ—¥æœŸéƒ¨åˆ†çš„é¢æ¿
+		//å¦‚æœæ—¥æœŸéƒ¨åˆ†çš„é¢æ¿ä¸ä¸ºnull,å¯ä»¥å…ˆå°†å…¶removeï¼Œç„¶åå†åˆ›å»º
 		if(panel_maincalenderpanel!=null){
 			panel_maincalenderpanel.setVisible(false);
 			this.remove(panel_maincalenderpanel);
 		}
-//´´½¨ĞÂµÄÈÕÆÚ²¿·ÖµÄÃæ°å
+//åˆ›å»ºæ–°çš„æ—¥æœŸéƒ¨åˆ†çš„é¢æ¿
 		panel_maincalenderpanel = new JPanel();
 		panel_maincalenderpanel.setBackground(Color.WHITE);
 		panel_maincalenderpanel.setBounds(2, 47, 247, 156);
@@ -169,53 +173,53 @@ public class CalendarPanel extends JPanel {
 			return;
 		}
 		Calendar c = new GregorianCalendar();
-		//½«¸ø¶¨ÈÕÆÚÉèÖÃÎªĞèÒªÏÔÊ¾µÄÈÕÆÚ
+		//å°†ç»™å®šæ—¥æœŸè®¾ç½®ä¸ºéœ€è¦æ˜¾ç¤ºçš„æ—¥æœŸ
 		c.setTime(today);
-		//ĞèÒª½«ÈÕ¸Ä³É1ºÅ£¬ÒòÎªÎÒÃÇĞèÒª»ñÈ¡¸ø¶¨ÈÕÆÚµÄµÚÒ»ÌìÊÇĞÇÆÚ¼¸
+		//éœ€è¦å°†æ—¥æ”¹æˆ1å·ï¼Œå› ä¸ºæˆ‘ä»¬éœ€è¦è·å–ç»™å®šæ—¥æœŸçš„ç¬¬ä¸€å¤©æ˜¯æ˜ŸæœŸå‡ 
 		c.set(c.get(Calendar.YEAR),c.get(Calendar.MONTH), 1);
-		int firstDayInMonthOfWeek = c.get(Calendar.DAY_OF_WEEK);              //¸ø¶¨ÈÕÆÚµÄµÚÒ»ÌìÊÇĞÇÆÚ¼¸
-		int daysOfMonth  = c.getActualMaximum(Calendar.DAY_OF_MONTH);         //¸ø¶¨ÈÕÆÚ¶ÔÓ¦ÔÂ·İµÄÌìÊı
-		//Ê×ÏÈÉú³É¸ø¶¨ÈÕÆÚµÚÒ»ÌìÖ®Ç°µÄ¿Õ°×²¿·Ö
-		//ÀıÈç£º2011-11µÄµÚÒ»Ìì¾ÍÊÇĞÇÆÚ¶ş£¬ÄÇÃ´ĞÇÆÚ¶şÖ®Ç°µÄ£¨ĞÇÆÚÈÕ£¬ĞÇÆÚÒ»£©ÎÒÃÇ²»ÏÔÊ¾ÄÚÈİ£¬ĞèÒªÉú³É¿Õ°×
+		int firstDayInMonthOfWeek = c.get(Calendar.DAY_OF_WEEK);              //ç»™å®šæ—¥æœŸçš„ç¬¬ä¸€å¤©æ˜¯æ˜ŸæœŸå‡ 
+		int daysOfMonth  = c.getActualMaximum(Calendar.DAY_OF_MONTH);         //ç»™å®šæ—¥æœŸå¯¹åº”æœˆä»½çš„å¤©æ•°
+		//é¦–å…ˆç”Ÿæˆç»™å®šæ—¥æœŸç¬¬ä¸€å¤©ä¹‹å‰çš„ç©ºç™½éƒ¨åˆ†
+		//ä¾‹å¦‚ï¼š2011-11çš„ç¬¬ä¸€å¤©å°±æ˜¯æ˜ŸæœŸäºŒï¼Œé‚£ä¹ˆæ˜ŸæœŸäºŒä¹‹å‰çš„ï¼ˆæ˜ŸæœŸæ—¥ï¼Œæ˜ŸæœŸä¸€ï¼‰æˆ‘ä»¬ä¸æ˜¾ç¤ºå†…å®¹ï¼Œéœ€è¦ç”Ÿæˆç©ºç™½
 		for(int i=1;i<firstDayInMonthOfWeek;i++){
 			JLabel bnt = new JLabel("");
 			bnt.setSize(27,23);
 			bnt.setBackground(Color.WHITE);
 			panel_maincalenderpanel.add(bnt);
 		}
-		//È»ºóÉú³É¸ø¶¨ÈÕÆÚµÄÈÕÆÚ²¿·Ö£¬¼´Êä³ö1,2,3....31ÕâÑùµÄÈÕÆÚ
+		//ç„¶åç”Ÿæˆç»™å®šæ—¥æœŸçš„æ—¥æœŸéƒ¨åˆ†ï¼Œå³è¾“å‡º1,2,3....31è¿™æ ·çš„æ—¥æœŸ
 		for(int i=1;i<=daysOfMonth;i++){
 			final JLabel bnt = new JLabel(String.valueOf(i));
 			bnt.setHorizontalAlignment(SwingConstants.CENTER);
 			bnt.setSize(27,23);
 			bnt.setBackground(Color.WHITE);
 			if(Calendar.getInstance().get(Calendar.DATE)==i){
-				//½«ÏµÍ³µ±ÆÚÈÕÆÚ¶ÔÓ¦µÄ×é¼şµÄ±ß¿òÏÔÊ¾ÎªÂÌÉ«
+				//å°†ç³»ç»Ÿå½“æœŸæ—¥æœŸå¯¹åº”çš„ç»„ä»¶çš„è¾¹æ¡†æ˜¾ç¤ºä¸ºç»¿è‰²
 				bnt.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 			}else{
-				//ÆäËûµÄÈÕÆÚ×é¼ş±ß¿òÏÔÊ¾Îª°×É«
+				//å…¶ä»–çš„æ—¥æœŸç»„ä»¶è¾¹æ¡†æ˜¾ç¤ºä¸ºç™½è‰²
 				bnt.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 			}
-			//Îª¶¨ÒåµÄÈÕÆÚ×é¼şÌí¼ÓÊó±êÊÂ¼ş
+			//ä¸ºå®šä¹‰çš„æ—¥æœŸç»„ä»¶æ·»åŠ é¼ æ ‡äº‹ä»¶
 			bnt.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseEntered(MouseEvent e) {
-					//µ±Êó±ê¾­¹ı¶ÔÓ¦µÄÈÕÆÚÉÏÃæÊ±ºò£¬¸ÃÈÕÆÚ¶ÔÓ¦µÄ×é¼ş±ß¿òÏÔÊ¾³ÉÂÌÉ«
+					//å½“é¼ æ ‡ç»è¿‡å¯¹åº”çš„æ—¥æœŸä¸Šé¢æ—¶å€™ï¼Œè¯¥æ—¥æœŸå¯¹åº”çš„ç»„ä»¶è¾¹æ¡†æ˜¾ç¤ºæˆç»¿è‰²
 					bnt.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 				}
 				@Override
 				public void mouseExited(MouseEvent e) {
 					if(Calendar.getInstance().get(Calendar.DATE)==Integer.parseInt(((JLabel)e.getSource()).getText().trim())){
-						//µ±Êó±êÀë¿ª¶ÔÓ¦ÈÕÆÚ×é¼şÊ±ºò£¬ÏµÍ³µ±ÆÚÈÕÆÚ¶ÔÓ¦µÄ×é¼şµÄ±ß¿òÏÔÊ¾ÎªÂÌÉ«
+						//å½“é¼ æ ‡ç¦»å¼€å¯¹åº”æ—¥æœŸç»„ä»¶æ—¶å€™ï¼Œç³»ç»Ÿå½“æœŸæ—¥æœŸå¯¹åº”çš„ç»„ä»¶çš„è¾¹æ¡†æ˜¾ç¤ºä¸ºç»¿è‰²
 						bnt.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 					}else{
-						//ÆäËûµÄÈÕÆÚ¶ÔÓ¦µÄ×é¼ş±ß¿òÎª°×É«
+						//å…¶ä»–çš„æ—¥æœŸå¯¹åº”çš„ç»„ä»¶è¾¹æ¡†ä¸ºç™½è‰²
 						bnt.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 					}
 				}
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					//Êó±êµ¥»÷ÊÂ¼ş£¬µ±Êó±êÑ¡ÔñÄ³¸öÈÕÆÚÊ±ºò£¬ĞèÒª½«¶ÔÓ¦µÄÈÕÆÚ°´ÕÕ¸ø¶¨µÄÈÕÆÚ¸ñÊ½Ìî³äµ½ÈÕÀú¿Ø¼şµÄÔØÌå×é¼şÉÏ£¬¼´setText(..)
+					//é¼ æ ‡å•å‡»äº‹ä»¶ï¼Œå½“é¼ æ ‡é€‰æ‹©æŸä¸ªæ—¥æœŸæ—¶å€™ï¼Œéœ€è¦å°†å¯¹åº”çš„æ—¥æœŸæŒ‰ç…§ç»™å®šçš„æ—¥æœŸæ ¼å¼å¡«å……åˆ°æ—¥å†æ§ä»¶çš„è½½ä½“ç»„ä»¶ä¸Šï¼Œå³setText(..)
 					String dateStr = lb_datetime.getText().trim();
 					try {
 						dateStr = sdf.format(sdf.parse(dateStr));
@@ -248,12 +252,12 @@ public class CalendarPanel extends JPanel {
 					} catch (ParseException e2) {
 						e2.printStackTrace();
 					}
-					//ÎªÁËÄÜ¹»ÈÃÄÇ¸öÔØÌå×é¼ş×ÔÓÃ¿Õ£¬ÕâÀïÒ²ĞèÒªÉèÖÃreturnDateStr²¢µ÷ÓÃ»Øµ÷½Ó¿Ú
+					//ä¸ºäº†èƒ½å¤Ÿè®©é‚£ä¸ªè½½ä½“ç»„ä»¶è‡ªç”¨ç©ºï¼Œè¿™é‡Œä¹Ÿéœ€è¦è®¾ç½®returnDateStrå¹¶è°ƒç”¨å›è°ƒæ¥å£
 					returnDateStr = dateStr;
 					if(callBack!=null){
 						callBack.callback();
 					}
-					//Ñ¡ÔñÈÕÆÚºóĞèÒª½«ÈÕÀú¿Ø¼şÒş²Ø
+					//é€‰æ‹©æ—¥æœŸåéœ€è¦å°†æ—¥å†æ§ä»¶éšè—
 					CalendarPanel.this.setVisible(false);
 				}
 			});
@@ -269,44 +273,44 @@ public class CalendarPanel extends JPanel {
 	}
 	/**
 
-	 * ³õÊ¼»¯ËùÓĞ¿Ø¼ş
+	 * åˆå§‹åŒ–æ‰€æœ‰æ§ä»¶
 
 	 */
 	private void init(){
-		//ÉÏÒ»Äê²Ù×÷×é¼ş£¬ÕâÀïÊ¹ÓÃÒ»¸öJLabel
+		//ä¸Šä¸€å¹´æ“ä½œç»„ä»¶ï¼Œè¿™é‡Œä½¿ç”¨ä¸€ä¸ªJLabel
 		btn_lastYear = new JLabel("<<");
 		btn_lastYear.setBounds(10, 0, 27, 23);
 		add(btn_lastYear);
 		btn_lastYear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//¸Ä±äÈÕÀú¿Ø¼şÃæ°åµÄÏÔÊ¾ÈÕÆÚ
+				//æ”¹å˜æ—¥å†æ§ä»¶é¢æ¿çš„æ˜¾ç¤ºæ—¥æœŸ
 				changTheDate(Calendar.YEAR,false);
 			}
 		}); 
-		//ÏÂÒ»Äê²Ù×÷×é¼ş£¬ÕâÀïÊ¹ÓÃÒ»¸öJLabel
+		//ä¸‹ä¸€å¹´æ“ä½œç»„ä»¶ï¼Œè¿™é‡Œä½¿ç”¨ä¸€ä¸ªJLabel
 		btn_nextYear = new JLabel(">>");
 		btn_nextYear.setBounds(179, 0, 27, 23);
 		add(btn_nextYear);
 		btn_nextYear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//¸Ä±äÈÕÀú¿Ø¼şÃæ°åµÄÏÔÊ¾ÈÕÆÚ
+				//æ”¹å˜æ—¥å†æ§ä»¶é¢æ¿çš„æ˜¾ç¤ºæ—¥æœŸ
 				changTheDate(Calendar.YEAR,true);
 			}
 		});
-		//ÉÏÒ»ÔÂ²Ù×÷×é¼ş£¬ÕâÀïÊ¹ÓÃÒ»¸öJLabel
+		//ä¸Šä¸€æœˆæ“ä½œç»„ä»¶ï¼Œè¿™é‡Œä½¿ç”¨ä¸€ä¸ªJLabel
 		btn_lastMonth = new JLabel("<");
 		btn_lastMonth.setBounds(39, 0, 27, 23);
 		add(btn_lastMonth);
 		btn_lastMonth.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//¸Ä±äÈÕÀú¿Ø¼şÃæ°åµÄÏÔÊ¾ÈÕÆÚ
+				//æ”¹å˜æ—¥å†æ§ä»¶é¢æ¿çš„æ˜¾ç¤ºæ—¥æœŸ
 				changTheDate(Calendar.MONTH,false);
 			}
 		});
-		//ÏÂÒ»ÔÂ²Ù×÷×é¼ş£¬ÕâÀïÊ¹ÓÃÒ»¸öJLabel
+		//ä¸‹ä¸€æœˆæ“ä½œç»„ä»¶ï¼Œè¿™é‡Œä½¿ç”¨ä¸€ä¸ªJLabel
 		btn_nextMonth = new JLabel(">");
 		btn_nextMonth.setBounds(150, 0, 27, 23);
 		add(btn_nextMonth);
@@ -314,7 +318,7 @@ public class CalendarPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				//¸Ä±äÈÕÀú¿Ø¼şÃæ°åµÄÏÔÊ¾ÈÕÆÚ
+				//æ”¹å˜æ—¥å†æ§ä»¶é¢æ¿çš„æ˜¾ç¤ºæ—¥æœŸ
 
 				changTheDate(Calendar.MONTH,true);
 
@@ -326,7 +330,7 @@ public class CalendarPanel extends JPanel {
 
  
 
-		//ÏÔÊ¾ÈÕÆÚµÄlable¶ÔÏó
+		//æ˜¾ç¤ºæ—¥æœŸçš„lableå¯¹è±¡
 
 		lb_datetime = new JLabel("");
 
@@ -340,7 +344,7 @@ public class CalendarPanel extends JPanel {
 
  
 
-		lblNewLabel = new JLabel("ÈÕ");
+		lblNewLabel = new JLabel("æ—¥");
 
 		lblNewLabel.setForeground(Color.RED);
 
@@ -352,7 +356,7 @@ public class CalendarPanel extends JPanel {
 
  
 
-		label = new JLabel("Ò»");
+		label = new JLabel("ä¸€");
 
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -362,7 +366,7 @@ public class CalendarPanel extends JPanel {
 
  
 
-		label_1 = new JLabel("¶ş");
+		label_1 = new JLabel("äºŒ");
 
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -372,7 +376,7 @@ public class CalendarPanel extends JPanel {
 
  
 
-		label_2 = new JLabel("Èı");
+		label_2 = new JLabel("ä¸‰");
 
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -382,7 +386,7 @@ public class CalendarPanel extends JPanel {
 
  
 
-		label_3 = new JLabel("ËÄ");
+		label_3 = new JLabel("å››");
 
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -392,7 +396,7 @@ public class CalendarPanel extends JPanel {
 
  
 
-		label_4 = new JLabel("Îå");
+		label_4 = new JLabel("äº”");
 
 		label_4.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -402,7 +406,7 @@ public class CalendarPanel extends JPanel {
 
  
 
-		label_5 = new JLabel("Áù");
+		label_5 = new JLabel("å…­");
 
 		label_5.setForeground(Color.GREEN);
 
@@ -428,9 +432,9 @@ public class CalendarPanel extends JPanel {
 				CalendarPanel.this.setVisible(false); 
 			}
 		});
-//		//ÓÃÓÚ¿ìËÙÏÔÊ¾½ñÌìÈÕÆÚµÄ°´Å¥
+//		//ç”¨äºå¿«é€Ÿæ˜¾ç¤ºä»Šå¤©æ—¥æœŸçš„æŒ‰é’®
 //
-//		btn_today = new JButton("½ñÌì");
+//		btn_today = new JButton("ä»Šå¤©");
 //
 //		btn_today.setBounds(10, 213, 60, 23);
 //
@@ -453,9 +457,9 @@ public class CalendarPanel extends JPanel {
 //			}
 //
 //		});
-		//ÓÃÓÚÈ¡ÏûÈÕÆÚÑ¡ÔñµÄ°´Å¥
+		//ç”¨äºå–æ¶ˆæ—¥æœŸé€‰æ‹©çš„æŒ‰é’®
 
-//		btn_cancel = new JButton("È¡Ïû");
+//		btn_cancel = new JButton("å–æ¶ˆ");
 //
 //		btn_cancel.setBounds(179, 213, 60, 23);
 //
@@ -480,7 +484,7 @@ public class CalendarPanel extends JPanel {
 	}
 //	/**
 //
-//	 * ÖØĞÂÉèÖÃÈÕÀúÃæ°åÏÔÊ¾ÎªÏµÍ³µ±Ç°ÈÕÆÚ
+//	 * é‡æ–°è®¾ç½®æ—¥å†é¢æ¿æ˜¾ç¤ºä¸ºç³»ç»Ÿå½“å‰æ—¥æœŸ
 //
 //	 */
 //	public void reset(){
@@ -492,11 +496,11 @@ public class CalendarPanel extends JPanel {
 //	}
 	/**
 
-	 * ¸Ä±äµ±Ç°ÈÕÀú¿Ø¼şÃæ°åµÄÈÕÆÚÏÔÊ¾
+	 * æ”¹å˜å½“å‰æ—¥å†æ§ä»¶é¢æ¿çš„æ—¥æœŸæ˜¾ç¤º
 
-	 * @param YEAR_OR_MONTH  ÊÇ¶ÔYEAR»¹ÊÇMONTH²Ù×÷£¬ÕâÀïĞèÒª´«ÈëCalendarÀà¶ÔÓ¦µÄ³£Á¿Öµ£ºCalendar.YEAR,Calendar.MONTH
+	 * @param YEAR_OR_MONTH  æ˜¯å¯¹YEARè¿˜æ˜¯MONTHæ“ä½œï¼Œè¿™é‡Œéœ€è¦ä¼ å…¥Calendarç±»å¯¹åº”çš„å¸¸é‡å€¼ï¼šCalendar.YEAR,Calendar.MONTH
 
-	 * @param flag  ¶ÔYEAR_OR_MONTHÊôĞÔÊÇ½øĞĞ¼Ó·¨²Ù×÷»¹ÊÇ¼õ·¨²Ù×÷£¬Èç¹ûflagÎªtrueÔòÊÇ¼Ó·¨²Ù×÷£¬·ñÔòÎª¼õ·¨²Ù×÷
+	 * @param flag  å¯¹YEAR_OR_MONTHå±æ€§æ˜¯è¿›è¡ŒåŠ æ³•æ“ä½œè¿˜æ˜¯å‡æ³•æ“ä½œï¼Œå¦‚æœflagä¸ºtrueåˆ™æ˜¯åŠ æ³•æ“ä½œï¼Œå¦åˆ™ä¸ºå‡æ³•æ“ä½œ
 
 	 */
 	public void changTheDate(int YEAR_OR_MONTH,boolean flag){
@@ -512,13 +516,13 @@ public class CalendarPanel extends JPanel {
 		c.setTime(date);
 		if(flag){
 
-			//½«¶ÔÓ¦µÄÈÕÆÚÊôĞÔ½øĞĞ¼Ó·¨²Ù×÷
+			//å°†å¯¹åº”çš„æ—¥æœŸå±æ€§è¿›è¡ŒåŠ æ³•æ“ä½œ
 
 			c.set(YEAR_OR_MONTH,c.get(YEAR_OR_MONTH)+1 );
 
 		}else{
 
-			//½«¶ÔÓ¦µÄÈÕÆÚÊôĞÔ½øĞĞ¼õ·¨²Ù×÷
+			//å°†å¯¹åº”çš„æ—¥æœŸå±æ€§è¿›è¡Œå‡æ³•æ“ä½œ
 
 			c.set(YEAR_OR_MONTH,c.get(YEAR_OR_MONTH)-1 );
 
@@ -586,7 +590,7 @@ public class CalendarPanel extends JPanel {
 	}
 }
 /*
- »Øµ÷½Ó¿Ú
+ å›è°ƒæ¥å£
  */
 interface CallBack{
 	public void callback();
