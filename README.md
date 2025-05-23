@@ -24,3 +24,6 @@
 ### CalendarPanel
 - 自定义日期选择控件
 - 支持年月切换和组件回填
+
+### Piechart Barchart
+- 饼状图统计和柱状图统计
