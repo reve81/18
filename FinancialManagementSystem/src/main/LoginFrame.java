@@ -18,55 +18,64 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-public class LoginFrame extends JFrame implements ActionListener{
-	private JLabel l_user,l_pwd,ll; //ÓÃ»§Ãû±êÇ©£¬ÃÜÂë±êÇ©
-	private JTextField t_user;//ÓÃ»§ÃûÎÄ±¾¿ò
-	private JPasswordField t_pwd; //ÃÜÂëÎÄ±¾¿ò
-	private JButton b_ok,b_cancel; //µÇÂ¼°´Å¥£¬ÍË³ö°´Å¥
-	private JButton clear_user;//Çå³ıÓÃ»§ÃûÎÄ±¾¿ò
-	private JButton clear_pwd;//Çå³ıÃÜÂëÎÄ±¾¿ò
-	/*Ä¬ÈÏÓÃ»§Ãû:tom ÃÜÂë:t123 */
+/**
+ * ç™»å½•ç•Œé¢ç±»ï¼Œç»§æ‰¿ JFrameï¼Œå®ç° ActionListener æ¥å£
+ * åŒ…å«ç”¨æˆ·åè¾“å…¥ã€å¯†ç è¾“å…¥ã€ç™»å½•å’Œé€€å‡ºæŒ‰é’®ï¼Œä»¥åŠä¸€äº›æ¸…é™¤æ“ä½œ
+ */
+public class LoginFrame extends JFrame implements ActionListener{//ç•Œé¢ç»„ä»¶å£°æ˜
+	private JLabel l_user,l_pwd,ll; //ç”¨æˆ·åæ ‡ç­¾ï¼Œå¯†ç æ ‡ç­¾
+	private JTextField t_user;//ç”¨æˆ·åæ–‡æœ¬æ¡†
+	private JPasswordField t_pwd; //å¯†ç æ–‡æœ¬æ¡†
+	private JButton b_ok,b_cancel; //ç™»å½•æŒ‰é’®ï¼Œé€€å‡ºæŒ‰é’®
+	private JButton clear_user;//æ¸…é™¤ç”¨æˆ·åæ–‡æœ¬æ¡†
+	private JButton clear_pwd;//æ¸…é™¤å¯†ç æ–‡æœ¬æ¡†
+	/*é»˜è®¤ç”¨æˆ·å:tom å¯†ç :t123 */
 	public LoginFrame(){
-		super("ÎÒÊÇÒ»¸öÃ»ÓĞ¸ĞÇéµÄÕË±¾");
+		super("æˆ‘æ˜¯ä¸€ä¸ªæ²¡æœ‰æ„Ÿæƒ…çš„è´¦æœ¬");
 		setBackground(Color.BLACK);
 		setForeground(Color.BLACK);
+		
+		//è®¾ç½®çª—å£å›¾æ ‡
 		Image icon=new ImageIcon("2.png").getImage();
 		this.setIconImage(icon);
+		
+		//åˆå§‹åŒ–æ ‡ç­¾è¾“å…¥æ¡†æŒ‰é’®
 		ll=new JLabel("            ( $ _ $ )            ");
 		ll.setForeground(Color.BLACK);
-		l_user=new JLabel("ÓÃ»§Ãû£º",JLabel.RIGHT);
+		l_user=new JLabel("ç”¨æˆ·åï¼š",JLabel.RIGHT);
 		l_user.setForeground(Color.BLACK);
 		l_user.setBackground(Color.BLACK);
-		l_pwd=new JLabel("    ÃÜÂë£º",JLabel.RIGHT);
+		l_pwd=new JLabel("    å¯†ç ï¼š",JLabel.RIGHT);
 		l_pwd.setBackground(Color.WHITE);
 		l_pwd.setForeground(Color.BLACK);
 		t_user=new JTextField(31);
 		t_user.setBackground(Color.WHITE);
 		t_pwd=new JPasswordField(31);
-		b_ok=new JButton("µÇÂ¼");
+		b_ok=new JButton("ç™»å½•");
 		b_ok.setForeground(Color.BLACK);
 		b_ok.setMargin(new Insets(3,3,3,3));
 		b_ok.setBackground(Color.WHITE);
 		b_ok.setBorder(null);
-		b_cancel=new JButton("ÍË³ö");
+		b_cancel=new JButton("é€€å‡º");
 		b_cancel.setForeground(Color.BLACK);
 		b_cancel.setMargin(new Insets(3,3,3,3));
 		b_cancel.setBorder(null);
 		b_cancel.setBackground(Color.WHITE);
-		clear_user=new JButton("¡Á");
+		clear_user=new JButton("Ã—");
 		clear_user.setForeground(Color.BLACK);
-		clear_pwd=new JButton("¡Á");
+		clear_pwd=new JButton("Ã—");
 		clear_user.setBackground(Color.WHITE);
 		clear_pwd.setBackground(Color.WHITE);
 		clear_user.setBorder(null);
 		clear_pwd.setBorder(null);
 		
+		// è®¾ç½®é»˜è®¤ç”¨æˆ·åä¸å¯ç¼–è¾‘ï¼Œç›¸å½“äºé»˜è®¤ç®¡ç†å‘˜
 		t_user.setBorder(null);
 		t_user.setText("tom");
 		t_user.setEditable(false);
-		clear_user.setVisible(false);
-		
+		clear_user.setVisible(false);//é»˜è®¤ä¸æ˜¾ç¤ºæ¸…æ¥šç”¨æˆ·æŒ‰é’®
+
+		//é¢æ¿å¸ƒå±€ï¼šä¸‰è¡Œåˆ†åˆ«æ˜¯ç”¨æˆ·åè¾“å…¥ã€å¯†ç è¾“å…¥ã€æŒ‰é’®åŒºåŸŸ
 		Container c=this.getContentPane();
 		JPanel cp=new JPanel();
 		GridLayout g=new GridLayout(3,1);
@@ -93,20 +102,21 @@ public class LoginFrame extends JFrame implements ActionListener{
 		
 		c.add(cp);
 		
-		//Îª°´Å¥Ìí¼Ó¼àÌıÊÂ¼ş
+		//ä¸ºæŒ‰é’®æ·»åŠ ç›‘å¬äº‹ä»¶
 		b_ok.addActionListener(this);
 		b_cancel.addActionListener(this);
 		//clear_user.addActionListener(this);
 		clear_pwd.addActionListener(this);
-        //½çÃæ´óĞ¡²»¿Éµ÷Õû 
-		this.setResizable(false);
-		this.setSize(455,150);
-		
-		//½çÃæÏÔÊ¾¾ÓÖĞ
-		Dimension screen = this.getToolkit().getScreenSize();
-	    this.setLocation((screen.width-this.getSize().width)/2,(screen.height-this.getSize().height)/2);
-		this.show();
+     
+		  // è®¾ç½®çª—å£å¤§å°å’Œä½ç½®
+                this.setResizable(false);
+                this.setSize(455, 150);
+                Dimension screen = this.getToolkit().getScreenSize();
+                this.setLocation((screen.width - this.getSize().width) / 2,
+                         (screen.height - this.getSize().height) / 2);
+                this.show();
 	}
+	//è¯»å–ç”¨æˆ·å
 	public static String getUser(){
 		FileReader fr=null;
 		BufferedReader br=null;
@@ -126,15 +136,15 @@ public class LoginFrame extends JFrame implements ActionListener{
 		}
 		return "";
 	}
-	//´ÓÎÄ¼şÖĞ¶ÁÈ¡ÓÃ»§ÃûºÍÃÜÂë
+	//ä»æ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·å¯†ç 
 	public static String getPwd() {
 		FileReader fr=null;
 		BufferedReader br=null;
 		try {
 			fr=new FileReader("pwd.txt");
 			br=new BufferedReader(fr);
-			br.readLine();
-			return br.readLine();
+			br.readLine();//è·³è¿‡ç¬¬ä¸€è¡Œç”¨æˆ·å
+			return br.readLine();//ç¬¬äºŒè¡Œæ˜¯å¯†ç 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}finally {
@@ -146,26 +156,25 @@ public class LoginFrame extends JFrame implements ActionListener{
 		}
 		return "";
 	}
+	 //äº‹ä»¶å¤„ç†å‡½æ•°ï¼Œæ ¹æ®æŒ‰é’®æ‰§è¡Œä¸åŒé€»è¾‘
 	public void actionPerformed(ActionEvent e){
 		if(b_cancel==e.getSource()){
-		    this.dispose();
+		    this.dispose();//å…³é—­çª—å£
 		}else if(b_ok==e.getSource()){
-	            //Ìí¼Ó´úÂë£¬ÑéÖ¤Éí·İ³É¹¦ºóÏÔÊ¾Ö÷½çÃæ
-				//this.dispose();
-				//new MainFrame(t_user.getText().trim());
+	            //æ·»åŠ ä»£ç ï¼ŒéªŒè¯èº«ä»½æˆåŠŸåæ˜¾ç¤ºä¸»ç•Œé¢
 			if(t_user.getText().equals(getUser())&&(String.valueOf(t_pwd.getPassword())).equals(getPwd())) {
 				this.dispose();
 				new MainFrame(t_user.getText().trim());
 			}
 			else {
-				JOptionPane.showMessageDialog(null,"ÃÜÂë´íÎó£¡","µÇÂ¼Ê§°Ü",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,"å¯†ç é”™è¯¯ï¼","ç™»å½•å¤±è´¥",JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		/*else if(clear_user==e.getSource()) {
 			t_user.setText("");
 		}*/
 		else if(clear_pwd==e.getSource()) {
-			t_pwd.setText("");
+			t_pwd.setText("");//æ¸…é™¤å¯†ç 
 		}
 	}
 }
