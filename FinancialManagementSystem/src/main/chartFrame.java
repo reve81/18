@@ -28,26 +28,26 @@ public class chartFrame extends JFrame implements ActionListener{
 	private getDataFromTxt gt;
 	private String s_start=null,s_end=null;
 	public chartFrame() {
-		super("Data statistics chart of pickled cabbage fish");
+		super("酸菜鱼数据统计图");
 		this.setResizable(false);
 		cl=new ArrayList<oneAccount>();
 		gt=new getDataFromTxt();
 		gt.getData(cl);
 		JPanel jp=new JPanel();//此JPanel的布局代码使用WindowBuilder自动生成
 		jp.setBackground(Color.WHITE);
-		l_fromdate=new JLabel("Start date");
+		l_fromdate=new JLabel("起始日期");
 		l_fromdate.setBackground(Color.WHITE);
 		l_fromdate.setForeground(Color.BLACK);
-		l_todate=new JLabel("Termination date");
+		l_todate=new JLabel("终止日期");
 		l_todate.setBackground(Color.WHITE);
 		l_todate.setForeground(Color.BLACK);
 		t_fromdate=new JTextField();
 		t_todate=new JTextField();
-		confirm_date=new JButton("Confirm");
+		confirm_date=new JButton("确认");
 		confirm_date.addActionListener(this);
 		confirm_date.setForeground(Color.BLACK);
 		confirm_date.setBackground(Color.WHITE);
-		all_date=new JButton("Reset");
+		all_date=new JButton("重置");
 		all_date.addActionListener(this);
 		all_date.setForeground(Color.WHITE);
 		all_date.setBackground(Color.BLACK);
@@ -81,11 +81,11 @@ public class chartFrame extends JFrame implements ActionListener{
 		this.getContentPane().add(jp);
 		CalendarPanel p1 = new CalendarPanel(t_fromdate, "yyyyMMdd");
 		p1.initCalendarPanel();
-		JLabel l1 = new JLabel("Calendar panel");
+		JLabel l1 = new JLabel("日历面板");
 		p1.add(l1);
 		CalendarPanel p2 = new CalendarPanel(t_todate, "yyyyMMdd");
 		p2.initCalendarPanel();
-		JLabel l2 = new JLabel("Calendar panel");
+		JLabel l2 = new JLabel("日历面板");
 		p2.add(l2);
 		all_date.setForeground(Color.BLACK);
 		all_date.setBackground(Color.WHITE);
@@ -160,7 +160,7 @@ public class chartFrame extends JFrame implements ActionListener{
 				pct.updateData(s1,s2);
 			}
 			catch(Exception ex) {
-				JOptionPane.showMessageDialog(null,"Please enter the correct date range!","Error",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,"请输入正确的日期范围！","错误",JOptionPane.ERROR_MESSAGE);
 				ex.getMessage();
 			}
 		}
