@@ -1,0 +1,36 @@
+# Product Backlog
+
+| Story ID | Story Name | Priority | Sprint | Estimation | Description | Acceptance Criteria |
+|----------|------------|----------|--------|------------|-------------|----------------------|
+| 1 | Manual Transaction Entry | Must-have | 1 | 1 | As a regular user, I want to manually enter transactions, so that I can track daily expenses. | 1.Users can enter the amount, category, and date, and successfully save the transaction.
+2.The transaction is automatically saved and synchronized to the overview page after input. |
+| 2 | AI Auto Categorization | Must-have | 1 | 3 | As a user, I want AI to automatically categorize transactions, so that I can reduce manual effort. | 1.AI can automatically recognize transaction categories.
+2.Users can manually modify the category.
+3.Provides overall statistics for each transaction category. |
+| 3 | CSV File Import | Must-have | 1 | 2 | As a busy professional, I want to import CSV files in one click, so that I can manage data in bulk. | 1.Supports parsing CSV formats from major banks for user uploads.
+2.Automatically recognizes and fills in transaction date, amount, and merchant name.
+3.Provides a preview interface for users to verify the data. |
+| 4 | Savings Goal Setting & Tracking | Should-have | 2 | 2 | As a student, I want to set savings goals and track progress, so that I can save money more effectively. | 1.Supports custom savings goal amounts and deadlines.
+2.Provides reasonable weekly savings recommendations for the goal.
+3.Displays a percentage progress bar showing saved amount vs. goal. |
+| 5 | Personalized Financial Advice | Should-have | 2 | 5 | As a user, I want the system to provide personalized financial advice based on my spending habits, so that I can optimize my expenses. | 1.Automatically identifies spending patterns based on at least 3 months of historical spending data.
+2.Provides users with specific spending recommendations.
+3.Offers "Accept Recommendation" or "Ignore" options, and records user preferences to optimize future suggestions. |
+| 6 | Spending Trend Analysis | Must-have | 3 | 3 | As a user, I want to view spending trends, so that I can better control my budget. | 1.Provides clear visual charts (e.g., bar charts, line charts) to intuitively display spending trends.
+2.Trend analysis includes year-over-year (YoY) and month-over-month (MoM) change rates.
+3.Users can customize the display dimensions of the trend report. |
+| 7 | WeChat Red Packet Categorization | Should-have | 3 | 2 | As a frequent WeChat Pay user, I want to differentiate red packet income from daily income, so that I can avoid confusion. | 1.Identifies WeChat red packet transactions and automatically tags them.
+2.Provides a dedicated red packet income and expense statistics page.
+3.Supports custom red packet categories (e.g., family & friends, corporate red packets). |
+| 8 | Festival Spending Reminder | Should-have | 4 | 3 | As a user concerned about household expenses, I want the system to recognize spending fluctuations during festivals like Spring Festival and Double Eleven, so that I can receive targeted suggestions. | 1.Predefines major Chinese holidays and their associated spending scenarios.
+2.Automatically generates spending trend reports during holiday periods.
+3.Provides holiday-specific budget recommendations. |
+| 9 | Multi-Account Management | Could-have | 4 | 3 | As a user with multiple bank cards/payment accounts, I want to manage all my account transactions in one place, so that I can have a clear overview of my finances. | 1.Supports adding multiple bank/payment accounts.
+2.Automatically synchronizes transaction records from all accounts.
+3.Provides a consolidated report across accounts. |
+| 10 | Spending Habit Comparison | Could-have | 4 | 3 | As a user focused on financial health, I want to compare spending habits over different periods, so that I can identify potential issues. | 1.Supports comparing spending data by month, quarter, or year.
+2.Displays visual charts to illustrate spending trend changes.
+3.Provides year-over-year (YoY) and month-over-month (MoM) spending analysis. |
+| 11 | Customizable Notification Settings | Could-have | 4 | 2 | As a user with different preferences, I want to customize my income and expense reminders (e.g., email, push notifications, SMS), so that I can receive notifications in my preferred way. | 1.Provides multiple reminder channel options.
+2.Supports setting reminder time intervals.
+3.Allows customization of reminder content templates. |
